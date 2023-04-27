@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package netools.common.protocol;
+option csharp_namespace = "Netools.Common.Protocol";
+option go_package = "github.com/gptlocal/netools/common/protocol";
+option java_package = "net.localgpt.netools.common.protocol";
+option java_multiple_files = true;
+
+import "common/net/address.proto";
+import "common/protocol/user.proto";
+
+message ServerEndpoint {
+  netools.common.net.IPOrDomain address = 1;
+  uint32 port = 2;
+  repeated netools.common.protocol.User user = 3;
+}
+

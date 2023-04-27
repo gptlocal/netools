@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package netools.common.net;
+option csharp_namespace = "Netools.Common.Net";
+option go_package = "github.com/gptlocal/netools/common/net";
+option java_package = "net.localgpt.netools.common.net";
+option java_multiple_files = true;
+
+// Address of a network host. It may be either an IP address or a domain
+// address.
+message IPOrDomain {
+  oneof address {
+    // IP address. Must by either 4 or 16 bytes.
+    bytes ip = 1;
+
+    // Domain address.
+    string domain = 2;
+  }
+}
+

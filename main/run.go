@@ -1,15 +1,21 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gptlocal/netools/common/cmdarg"
 	"github.com/gptlocal/netools/common/platform"
+	"github.com/gptlocal/netools/core"
 	"github.com/gptlocal/netools/main/commands/base"
 	"log"
 	"os"
+	"os/signal"
 	"path"
 	"path/filepath"
 	"regexp"
+	"runtime"
+	"runtime/debug"
 	"strings"
+	"syscall"
 )
 
 var cmdRun = &base.Command{
@@ -31,10 +37,9 @@ without launching the server
 	`,
 }
 
-// todo
-//func init() {
-//	cmdRun.Run = executeRun // break init loop
-//}
+func init() {
+	cmdRun.Run = executeRun // break init loop
+}
 
 var (
 	configFiles cmdarg.Arg // "Config file for Netools.", the option is customed type, parse in main
@@ -54,43 +59,42 @@ var (
 	}()
 )
 
-// todo
-//func executeRun(cmd *base.Command, args []string) {
-//	printVersion()
-//	server, err := startNetool()
-//	if err != nil {
-//		fmt.Println("Failed to start:", err)
-//		// Configuration error. Exit with a special value to prevent systemd from restarting.
-//		os.Exit(23)
-//	}
-//
-//	if *test {
-//		fmt.Println("Configuration OK.")
-//		os.Exit(0)
-//	}
-//
-//	if err := server.Start(); err != nil {
-//		fmt.Println("Failed to start:", err)
-//		os.Exit(-1)
-//	}
-//	defer server.Close()
-//
-//	/*
-//		conf.FileCache = nil
-//		conf.IPCache = nil
-//		conf.SiteCache = nil
-//	*/
-//
-//	// Explicitly triggering GC to remove garbage from config loading.
-//	runtime.GC()
-//	debug.FreeOSMemory()
-//
-//	{
-//		osSignals := make(chan os.Signal, 1)
-//		signal.Notify(osSignals, os.Interrupt, syscall.SIGTERM)
-//		<-osSignals
-//	}
-//}
+func executeRun(cmd *base.Command, args []string) {
+	printVersion()
+	server, err := startNetool()
+	if err != nil {
+		fmt.Println("Failed to start:", err)
+		// Configuration error. Exit with a special value to prevent systemd from restarting.
+		os.Exit(23)
+	}
+
+	if *test {
+		fmt.Println("Configuration OK.")
+		os.Exit(0)
+	}
+
+	if err := server.Start(); err != nil {
+		fmt.Println("Failed to start:", err)
+		os.Exit(-1)
+	}
+	defer server.Close()
+
+	/*
+		conf.FileCache = nil
+		conf.IPCache = nil
+		conf.SiteCache = nil
+	*/
+
+	// Explicitly triggering GC to remove garbage from config loading.
+	runtime.GC()
+	debug.FreeOSMemory()
+
+	{
+		osSignals := make(chan os.Signal, 1)
+		signal.Notify(osSignals, os.Interrupt, syscall.SIGTERM)
+		<-osSignals
+	}
+}
 
 func fileExists(file string) bool {
 	info, err := os.Stat(file)
@@ -164,29 +168,28 @@ func getConfigFilePath() cmdarg.Arg {
 	return cmdarg.Arg{"stdin:"}
 }
 
-// todo
-//func getConfigFormat() string {
-//	f := core.GetFormatByExtension(*format)
-//	if f == "" {
-//		f = "auto"
-//	}
-//	return f
-//}
-//
-//func startNetool() (core.Server, error) {
-//	configFiles := getConfigFilePath()
-//
-//	// config, err := core.LoadConfig(getConfigFormat(), configFiles[0], configFiles)
-//
-//	c, err := core.LoadConfig(getConfigFormat(), configFiles)
-//	if err != nil {
-//		return nil, newError("failed to load config files: [", configFiles.String(), "]").Base(err)
-//	}
-//
-//	server, err := core.New(c)
-//	if err != nil {
-//		return nil, newError("failed to create server").Base(err)
-//	}
-//
-//	return server, nil
-//}
+func getConfigFormat() string {
+	f := core.GetFormatByExtension(*format)
+	if f == "" {
+		f = "auto"
+	}
+	return f
+}
+
+func startNetool() (core.Server, error) {
+	configFiles := getConfigFilePath()
+
+	// config, err := core.LoadConfig(getConfigFormat(), configFiles[0], configFiles)
+
+	c, err := core.LoadConfig(getConfigFormat(), configFiles)
+	if err != nil {
+		return nil, newError("failed to load config files: [", configFiles.String(), "]").Base(err)
+	}
+
+	server, err := core.New(c)
+	if err != nil {
+		return nil, newError("failed to create server").Base(err)
+	}
+
+	return server, nil
+}

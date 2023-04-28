@@ -21,6 +21,19 @@ $ protoc --go_out=. --go_opt=paths=source_relative common/protocol/server_spec.p
 $ go mod tidy
 ```
 
+### transport
+
+```bash
+$ protoc --go_out=. --go_opt=paths=source_relative transport/internet/config.proto
+$ protoc --go_out=. --go_opt=paths=source_relative transport/global/config.proto
+```
+
+### core
+
+```bash
+$ protoc --go_out=. --go_opt=paths=source_relative core/config.proto
+```
+
 ### error generator
 
 ### common

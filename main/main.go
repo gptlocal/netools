@@ -1,5 +1,7 @@
 package main
 
+//go:generate go run github.com/gptlocal/netools/common/errors/codegen
+
 import (
 	"flag"
 	"os"

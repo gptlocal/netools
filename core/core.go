@@ -30,7 +30,7 @@ var (
 	intro    = "A unified platform for anti-censorship."
 )
 
-// Version returns Netools's version as a string, in the form of "x.y.z" where x, y and z are numbers.
+// Version returns Netool's version as a string, in the form of "x.y.z" where x, y and z are numbers.
 // ".z" part may be omitted in regular releases.
 func Version() string {
 	return fmt.Sprintf("%v.%v.%v", Version_x, Version_y, Version_z)

@@ -1,8 +1,7 @@
 
+## protoc generator
 
-
-
-## common
+### common
 
 ```bash
 # protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative your_proto_file.proto
@@ -20,4 +19,12 @@ $ protoc --go_out=. --go_opt=paths=source_relative common/protocol/user.proto
 $ protoc --go_out=. --go_opt=paths=source_relative common/protocol/server_spec.proto
 
 $ go mod tidy
+```
+
+### error generator
+
+### common
+
+```bash
+$ go generate ./...
 ```

@@ -6,7 +6,7 @@ import (
 	// Mandatory features. Can't remove unless there are replacements.
 	_ "github.com/gptlocal/netools/app/dispatcher"
 	_ "github.com/gptlocal/netools/app/proxyman/inbound"
-	//_ "github.com/gptlocal/netools/app/proxyman/outbound"
+	_ "github.com/gptlocal/netools/app/proxyman/outbound"
 
 	// Default commander and all its services. This is an optional feature.
 	//_ "github.com/gptlocal/netools/app/commander"
@@ -22,10 +22,10 @@ import (
 	//_ "github.com/gptlocal/netools/app/dns/fakedns"
 	//_ "github.com/gptlocal/netools/app/log"
 	//_ "github.com/gptlocal/netools/app/metrics"
-	//_ "github.com/gptlocal/netools/app/policy"
+	_ "github.com/gptlocal/netools/app/policy"
 	//_ "github.com/gptlocal/netools/app/reverse"
 	//_ "github.com/gptlocal/netools/app/router"
-	//_ "github.com/gptlocal/netools/app/stats"
+	_ "github.com/gptlocal/netools/app/stats"
 
 	// Fix dependency cycle caused by core import in internet package
 	//_ "github.com/gptlocal/netools/transport/internet/tagged/taggedimpl"
@@ -36,8 +36,8 @@ import (
 	// Inbound and outbound proxies.
 	//_ "github.com/gptlocal/netools/proxy/blackhole"
 	//_ "github.com/gptlocal/netools/proxy/dns"
-	//_ "github.com/gptlocal/netools/proxy/dokodemo"
-	//_ "github.com/gptlocal/netools/proxy/freedom"
+	_ "github.com/gptlocal/netools/proxy/dokodemo"
+	_ "github.com/gptlocal/netools/proxy/freedom"
 	//_ "github.com/gptlocal/netools/proxy/http"
 	//_ "github.com/gptlocal/netools/proxy/loopback"
 	//_ "github.com/gptlocal/netools/proxy/mtproto"
@@ -47,7 +47,7 @@ import (
 	//_ "github.com/gptlocal/netools/proxy/vless/inbound"
 	//_ "github.com/gptlocal/netools/proxy/vless/outbound"
 	//_ "github.com/gptlocal/netools/proxy/vmess/inbound"
-	//_ "github.com/gptlocal/netools/proxy/vmess/outbound"
+	_ "github.com/gptlocal/netools/proxy/vmess/outbound"
 	//_ "github.com/gptlocal/netools/proxy/wireguard"
 
 	// Transports
@@ -57,9 +57,9 @@ import (
 	//_ "github.com/gptlocal/netools/transport/internet/kcp"
 	//_ "github.com/gptlocal/netools/transport/internet/quic"
 	//_ "github.com/gptlocal/netools/transport/internet/reality"
-	//_ "github.com/gptlocal/netools/transport/internet/tcp"
-	//_ "github.com/gptlocal/netools/transport/internet/tls"
-	//_ "github.com/gptlocal/netools/transport/internet/udp"
+	_ "github.com/gptlocal/netools/transport/internet/tcp"
+	_ "github.com/gptlocal/netools/transport/internet/tls"
+	_ "github.com/gptlocal/netools/transport/internet/udp"
 	//_ "github.com/gptlocal/netools/transport/internet/websocket"
 
 	// Transport headers

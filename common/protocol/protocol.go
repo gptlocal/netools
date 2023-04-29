@@ -1,3 +1,3 @@
-package protocol // import "github.com/xtls/xray-core/common/protocol"
+package protocol
 
 //go:generate go run github.com/gptlocal/netools/common/errors/codegen

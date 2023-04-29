@@ -26,8 +26,9 @@ $ go mod tidy
 ```bash
 $ protoc --go_out=. --go_opt=paths=source_relative transport/internet/config.proto
 $ protoc --go_out=. --go_opt=paths=source_relative transport/global/config.proto
-
+$ protoc --go_out=. --go_opt=paths=source_relative transport/internet/tcp/config.proto
 $ protoc --go_out=. --go_opt=paths=source_relative transport/internet/tls/config.proto
+$ protoc --go_out=. --go_opt=paths=source_relative transport/internet/reality/config.proto
 ```
 
 ### app/proxy
@@ -39,7 +40,11 @@ $ protoc --go_out=. --go_opt=paths=source_relative app/dispatcher/config.proto
 $ protoc --go_out=. --go_opt=paths=source_relative app/proxyman/config.proto
 $ protoc --go_out=. --go_opt=paths=source_relative app/stats/config.proto
 $ protoc --go_out=. --go_opt=paths=source_relative app/policy/config.proto
+
 $ protoc --go_out=. --go_opt=paths=source_relative proxy/freedom/config.proto
+$ protoc --go_out=. --go_opt=paths=source_relative proxy/dokodemo/config.proto
+$ protoc --go_out=. --go_opt=paths=source_relative proxy/vmess/account.proto
+$ protoc --go_out=. --go_opt=paths=source_relative proxy/vmess/outbound/config.proto
 ```
 
 ### core

@@ -21,7 +21,7 @@ import (
 	"github.com/gptlocal/netools/testing/servers/tcp"
 )
 
-func TestXrayDependency(t *testing.T) {
+func TestNetoolDependency(t *testing.T) {
 	instance := new(Instance)
 
 	wait := make(chan bool, 1)
@@ -35,7 +35,7 @@ func TestXrayDependency(t *testing.T) {
 	<-wait
 }
 
-func TestXrayClose(t *testing.T) {
+func TestNetoolClose(t *testing.T) {
 	port := tcp.PickPort()
 
 	userID := uuid.New()

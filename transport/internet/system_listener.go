@@ -115,7 +115,7 @@ func (dl *DefaultListener) ListenPacket(ctx context.Context, addr net.Addr, sock
 // RegisterListenerController adds a controller to the effective system listener.
 // The controller can be used to operate on file descriptors before they are put into use.
 //
-// xray:api:beta
+// netool:api:beta
 func RegisterListenerController(controller control.Func) error {
 	if controller == nil {
 		return newError("nil listener controller")

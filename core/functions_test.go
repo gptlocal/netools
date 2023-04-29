@@ -37,7 +37,7 @@ func xor2(b []byte) []byte {
 	return r
 }
 
-func TestXrayDial(t *testing.T) {
+func TestNetoolDial(t *testing.T) {
 	tcpServer := tcp.Server{
 		MsgProcessor: xor,
 	}
@@ -87,7 +87,7 @@ func TestXrayDial(t *testing.T) {
 	}
 }
 
-func TestXrayDialUDPConn(t *testing.T) {
+func TestNetoolDialUDPConn(t *testing.T) {
 	udpServer := udp.Server{
 		MsgProcessor: xor,
 	}
@@ -147,7 +147,7 @@ func TestXrayDialUDPConn(t *testing.T) {
 	}
 }
 
-func TestXrayDialUDP(t *testing.T) {
+func TestNetoolDialUDP(t *testing.T) {
 	udpServer1 := udp.Server{
 		MsgProcessor: xor,
 	}

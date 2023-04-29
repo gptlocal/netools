@@ -11,7 +11,7 @@ import (
 	"github.com/gptlocal/netools/transport/internet/udp"
 )
 
-// CreateObject creates a new object based on the given Xray instance and config. The Xray instance may be nil.
+// CreateObject creates a new object based on the given Netool instance and config. The Netool instance may be nil.
 func CreateObject(v *Instance, config interface{}) (interface{}, error) {
 	ctx := v.ctx
 	if v != nil {
@@ -20,10 +20,10 @@ func CreateObject(v *Instance, config interface{}) (interface{}, error) {
 	return common.CreateObject(ctx, config)
 }
 
-// StartInstance starts a new Xray instance with given serialized config.
-// By default Xray only support config in protobuf format, i.e., configFormat = "protobuf". Caller need to load other packages to add JSON support.
+// StartInstance starts a new Netool instance with given serialized config.
+// By default Netool only support config in protobuf format, i.e., configFormat = "protobuf". Caller need to load other packages to add JSON support.
 //
-// xray:api:stable
+// netool:api:stable
 func StartInstance(configFormat string, configBytes []byte) (*Instance, error) {
 	config, err := LoadConfig(configFormat, bytes.NewReader(configBytes))
 	if err != nil {
@@ -39,18 +39,18 @@ func StartInstance(configFormat string, configBytes []byte) (*Instance, error) {
 	return instance, nil
 }
 
-// Dial provides an easy way for upstream caller to create net.Conn through Xray.
-// It dispatches the request to the given destination by the given Xray instance.
+// Dial provides an easy way for upstream caller to create net.Conn through Netool.
+// It dispatches the request to the given destination by the given Netool instance.
 // Since it is under a proxy context, the LocalAddr() and RemoteAddr() in returned net.Conn
 // will not show real addresses being used for communication.
 //
-// xray:api:stable
+// netool:api:stable
 func Dial(ctx context.Context, v *Instance, dest net.Destination) (net.Conn, error) {
 	ctx = toContext(ctx, v)
 
 	dispatcher := v.GetFeature(routing.DispatcherType())
 	if dispatcher == nil {
-		return nil, newError("routing.Dispatcher is not registered in Xray core")
+		return nil, newError("routing.Dispatcher is not registered in Netool core")
 	}
 
 	r, err := dispatcher.(routing.Dispatcher).Dispatch(ctx, dest)
@@ -66,18 +66,18 @@ func Dial(ctx context.Context, v *Instance, dest net.Destination) (net.Conn, err
 	return cnc.NewConnection(cnc.ConnectionInputMulti(r.Writer), readerOpt), nil
 }
 
-// DialUDP provides a way to exchange UDP packets through Xray instance to remote servers.
+// DialUDP provides a way to exchange UDP packets through Netool instance to remote servers.
 // Since it is under a proxy context, the LocalAddr() in returned PacketConn will not show the real address.
 //
 // TODO: SetDeadline() / SetReadDeadline() / SetWriteDeadline() are not implemented.
 //
-// xray:api:beta
+// netool:api:beta
 func DialUDP(ctx context.Context, v *Instance) (net.PacketConn, error) {
 	ctx = toContext(ctx, v)
 
 	dispatcher := v.GetFeature(routing.DispatcherType())
 	if dispatcher == nil {
-		return nil, newError("routing.Dispatcher is not registered in Xray core")
+		return nil, newError("routing.Dispatcher is not registered in Netool core")
 	}
 	return udp.DialDispatcher(ctx, dispatcher.(routing.Dispatcher))
 }

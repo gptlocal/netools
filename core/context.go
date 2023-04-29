@@ -4,14 +4,14 @@ import (
 	"context"
 )
 
-// XrayKey is the key type of Instance in Context, exported for test.
-type XrayKey int
+// NetoolKey is the key type of Instance in Context, exported for test.
+type NetoolKey int
 
-const xrayKey XrayKey = 1
+const netoolKey NetoolKey = 1
 
 // FromContext returns an Instance from the given context, or nil if the context doesn't contain one.
 func FromContext(ctx context.Context) *Instance {
-	if s, ok := ctx.Value(xrayKey).(*Instance); ok {
+	if s, ok := ctx.Value(netoolKey).(*Instance); ok {
 		return s
 	}
 	return nil
@@ -29,16 +29,16 @@ func MustFromContext(ctx context.Context) *Instance {
 /*
 	toContext returns ctx from the given context, or creates an Instance if the context doesn't find that.
 
-It is unsupported to use this function to create a context that is suitable to invoke Xray's internal component
+It is unsupported to use this function to create a context that is suitable to invoke Netool's internal component
 in third party code, you shouldn't use //go:linkname to alias of this function into your own package and
 use this function in your third party code.
 
-For third party code, usage enabled by creating a context to interact with Xray's internal component is unsupported,
+For third party code, usage enabled by creating a context to interact with Netool's internal component is unsupported,
 and may break at any time.
 */
 func toContext(ctx context.Context, v *Instance) context.Context {
 	if FromContext(ctx) != v {
-		ctx = context.WithValue(ctx, xrayKey, v)
+		ctx = context.WithValue(ctx, netoolKey, v)
 	}
 	return ctx
 }

@@ -22,7 +22,7 @@ const (
 )
 
 // Global transport settings. This affects all type of connections that go
-// through Xray. Deprecated. Use each settings in StreamConfig.
+// through Netool. Deprecated. Use each settings in StreamConfig.
 //
 // Deprecated: Marked as deprecated in transport/global/config.proto.
 type Config struct {

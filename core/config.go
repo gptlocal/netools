@@ -11,14 +11,14 @@ import (
 	"github.com/gptlocal/netools/main/confloader"
 )
 
-// ConfigFormat is a configurable format of Xray config file.
+// ConfigFormat is a configurable format of Netool config file.
 type ConfigFormat struct {
 	Name      string
 	Extension []string
 	Loader    ConfigLoader
 }
 
-// ConfigLoader is a utility to load Xray config from external source.
+// ConfigLoader is a utility to load Netool config from external source.
 type ConfigLoader func(input interface{}) (*Config, error)
 
 // ConfigBuilder is a builder to build core.Config from filenames and formats

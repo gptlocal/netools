@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package netools.transport.internet.headers.wechat;
+option csharp_namespace = "Netools.Transport.Internet.Headers.Wechat";
+option go_package = "github.com/gptlocal/netools/transport/internet/headers/wechat";
+option java_package = "net.localgpt.netools.transport.internet.headers.wechat";
+option java_multiple_files = true;
+
+message VideoConfig {}

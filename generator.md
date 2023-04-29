@@ -29,6 +29,12 @@ $ protoc --go_out=. --go_opt=paths=source_relative transport/global/config.proto
 $ protoc --go_out=. --go_opt=paths=source_relative transport/internet/tcp/config.proto
 $ protoc --go_out=. --go_opt=paths=source_relative transport/internet/tls/config.proto
 $ protoc --go_out=. --go_opt=paths=source_relative transport/internet/reality/config.proto
+
+$ protoc --go_out=. --go_opt=paths=source_relative transport/internet/headers/noop/config.proto
+$ protoc --go_out=. --go_opt=paths=source_relative transport/internet/headers/srtp/config.proto
+$ protoc --go_out=. --go_opt=paths=source_relative transport/internet/headers/utp/config.proto
+$ protoc --go_out=. --go_opt=paths=source_relative transport/internet/headers/wechat/config.proto
+$ protoc --go_out=. --go_opt=paths=source_relative transport/internet/headers/wireguard/config.proto
 ```
 
 ### app/proxy

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package netools.transport.internet.headers.utp;
+option csharp_namespace = "Netools.Transport.Internet.Headers.Utp";
+option go_package = "github.com/gptlocal/netools/transport/internet/headers/utp";
+option java_package = "net.localgpt.netools.transport.internet.headers.utp";
+option java_multiple_files = true;
+
+message Config {
+  uint32 version = 1;
+}

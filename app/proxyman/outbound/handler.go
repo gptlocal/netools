@@ -3,9 +3,6 @@ package outbound
 import (
 	"context"
 	"errors"
-	"io"
-	"os"
-
 	"github.com/gptlocal/netools/app/proxyman"
 	"github.com/gptlocal/netools/common"
 	"github.com/gptlocal/netools/common/mux"
@@ -22,6 +19,8 @@ import (
 	"github.com/gptlocal/netools/transport/internet/stat"
 	"github.com/gptlocal/netools/transport/internet/tls"
 	"github.com/gptlocal/netools/transport/pipe"
+	"io"
+	"os"
 )
 
 func getStatCounter(v *core.Instance, tag string) (stats.Counter, stats.Counter) {

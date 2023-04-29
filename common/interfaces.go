@@ -1,6 +1,8 @@
 package common
 
-import "github.com/gptlocal/netools/common/errors"
+import (
+	"github.com/gptlocal/netools/common/errors"
+)
 
 // Closable is the interface for objects that can release its resources.
 //

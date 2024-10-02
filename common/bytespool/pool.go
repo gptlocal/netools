@@ -1,5 +1,7 @@
 package bytespool
 
+// MIGRATED: bytespool/pool.go on 2024-10-01
+
 import "sync"
 
 func createAllocFunc(size int32) func() interface{} {

@@ -1,3 +1,5 @@
+// MIGRATED: bitmask/bytes.go on 2024-10-02
+
 package bitmask
 
 // Byte is a bitmask in byte.

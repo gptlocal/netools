@@ -1,3 +1,5 @@
+// MIGRATED: buf/*.go on 2024-10-02
+
 // Package buf provides a light-weight memory allocation mechanism.
 package buf // import "github.com/gptlocal/netools/common/buf"
 

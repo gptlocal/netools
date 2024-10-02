@@ -1,5 +1,7 @@
 package serial
 
+// MIGRATED: serial/typed_message.go on 2024-10-01
+
 import (
 	"errors"
 	"reflect"

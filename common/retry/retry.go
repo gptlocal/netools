@@ -1,3 +1,5 @@
+// MIGRATED: retry/retry.go on 2024-10-01
+
 package retry // import "github.com/gptlocal/netools/common/retry"
 
 //go:generate go run github.com/gptlocal/netools/common/errors/codegen

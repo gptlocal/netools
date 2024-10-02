@@ -1,5 +1,7 @@
 package units
 
+// MIGRATED: units/bytesize.go on 2024-10-02
+
 import (
 	"errors"
 	"strconv"

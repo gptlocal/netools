@@ -1,5 +1,7 @@
 package uuid // import "github.com/gptlocal/netools/common/uuid"
 
+// MIGRATED: uuid/uuid.go on 2024-10-02
+
 import (
 	"bytes"
 	"crypto/rand"

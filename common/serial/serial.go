@@ -1,3 +1,5 @@
+// MIGRATED: serial/serial.go on 2024-10-02
+
 package serial
 
 import (

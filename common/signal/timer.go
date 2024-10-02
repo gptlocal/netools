@@ -1,3 +1,5 @@
+// MIGRATED: timer/timer.go on 2024-10-03
+
 package signal
 
 import (

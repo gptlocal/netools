@@ -1,3 +1,5 @@
+// MIGRATED: signal/notifier.go on 2024-10-03
+
 package signal
 
 // Notifier is a utility for notifying changes. The change producer may notify changes multiple time, and the consumer may get notified asynchronously.
